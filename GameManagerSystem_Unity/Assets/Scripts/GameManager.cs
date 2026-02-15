@@ -17,7 +17,16 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager> {
   public IState CurrentState => _stateStack.Count > 0 ? _stateStack.Peek() : null;
 
+  // GameStates
+  public IState BootState { get; private set; }
+  public IState MainMenuState { get; private set; }
+
   private Stack<IState> _stateStack = new();
+  
+  #if UNITY_EDITOR
+  [Header("Debug Info"), SerializeField]
+  private string _activeTopState;
+  #endif
 
   /// <summary>
   /// Adds a new state to the top of the state stack and makes it the active state.
@@ -32,7 +41,9 @@ public class GameManager : Singleton<GameManager> {
     newState.Enter();
 
     // 3.) verify that the state change occurred properly
+    #if UNITY_EDITOR
     ValidateStateChange();
+    #endif
   }
 
   /// <summary>
@@ -60,10 +71,11 @@ public class GameManager : Singleton<GameManager> {
 
     PushState(newState);
   }
-
+  #if UNITY_EDITOR
   private void ValidateStateChange() {
-    Debug.Log("State Change validated!");
+    _activeTopState = CurrentState?.GetType().Name ?? "Empty";
   }
+  #endif
 
   // Unity Object Lifetime Methods
   
@@ -72,6 +84,12 @@ public class GameManager : Singleton<GameManager> {
   // just to call it and do nothing else.
   protected override void Awake() {
     base.Awake();
+    BootState = new BootState();
+    MainMenuState = new MainMenuState();
+  }
+
+  private void Start() {
+    PushState(BootState);
   }
 
   private void Update() {

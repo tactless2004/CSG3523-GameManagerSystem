@@ -31,8 +31,6 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         else {
             Destroy(gameObject);
         }
-
-        Debug.Log(Instance);
     }
     
     private void MakePersistent() {
