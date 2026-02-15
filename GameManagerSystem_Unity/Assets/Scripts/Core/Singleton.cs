@@ -1,13 +1,13 @@
 /************************************************************
-* COPYRIGHT:  Year
-* PROJECT: Name of Project or Assignment
+* COPYRIGHT: 2026 
+* PROJECT: CSG3523 - GameManagerSystem Assignment 
 * FILE NAME: Singleton.cs
-* DESCRIPTION: Short Description of script.
+* DESCRIPTION: Abstract Base Class for Singleton type objects. 
 *                   
 * REVISION HISTORY:
 * Date [YYYY/MM/DD] | Author | Comments
 * ------------------------------------------------------------
-* 2000/01/01 | Your Name | Created class
+* 2026/02/15 | Leyton McKinney | Init
 *
 *
 ************************************************************/
