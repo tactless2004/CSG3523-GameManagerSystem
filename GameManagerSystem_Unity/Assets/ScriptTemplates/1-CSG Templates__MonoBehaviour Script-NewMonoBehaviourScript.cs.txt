@@ -1,0 +1,22 @@
+/************************************************************
+* COPYRIGHT:  Year
+* PROJECT: Name of Project or Assignment
+* FILE NAME: #SCRIPTNAME#.cs
+* DESCRIPTION: Short Description of script.
+*                   
+* REVISION HISTORY:
+* Date [YYYY/MM/DD] | Author | Comments
+* ------------------------------------------------------------
+* 2000/01/01 | Your Name | Created class
+*
+*
+************************************************************/
+ 
+using UnityEngine;
+ 
+#ROOTNAMESPACEBEGIN#
+public class #SCRIPTNAME# : MonoBehaviour
+{
+
+}
+#ROOTNAMESPACEEND#
