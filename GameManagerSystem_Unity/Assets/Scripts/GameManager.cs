@@ -22,6 +22,7 @@ public class GameManager : Singleton<GameManager> {
   public IState MainMenuState { get; private set; }
   public IState PlayState { get; private set; }
   public IState PauseState { get; private set; }
+  public IState GameOverState {get; private set; }
 
   public bool Paused => (CurrentState.GetType().Name ?? "") == "PauseState";
   private Stack<IState> _stateStack = new();
@@ -91,6 +92,7 @@ public class GameManager : Singleton<GameManager> {
     MainMenuState = new MainMenuState();
     PlayState = new PlayState();
     PauseState = new PauseState();
+    GameOverState = new GameOverState();
   }
 
   private void Start() {

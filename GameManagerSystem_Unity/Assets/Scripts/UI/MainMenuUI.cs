@@ -24,4 +24,8 @@ public class MainMenuUI : MonoBehaviour
   public void PlayButton() {
     _gm.ReplaceStates(_gm.PlayState);
   }
+
+  public void GameoverButton() {
+    _gm.ReplaceStates(_gm.GameOverState);
+  }
 }

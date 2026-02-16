@@ -19,15 +19,12 @@ public class PlayState : BaseGameState
 {
   public override string Name => "Playing";
 
-  private bool _paused = false;
-
   public override void Enter() {
     Debug.Log($"Entered {Name} Scene");
     SceneManager.LoadScene("Playing");
   }
 
   public override void Exit() {
-    SceneManager.UnloadSceneAsync("Playing");
   }
 
   public override void Execute() {
