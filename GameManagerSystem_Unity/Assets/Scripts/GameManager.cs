@@ -20,7 +20,10 @@ public class GameManager : Singleton<GameManager> {
   // GameStates
   public IState BootState { get; private set; }
   public IState MainMenuState { get; private set; }
+  public IState PlayState { get; private set; }
+  public IState PauseState { get; private set; }
 
+  public bool Paused => (CurrentState.GetType().Name ?? "") == "PauseState";
   private Stack<IState> _stateStack = new();
   
   #if UNITY_EDITOR
@@ -86,6 +89,8 @@ public class GameManager : Singleton<GameManager> {
     base.Awake();
     BootState = new BootState();
     MainMenuState = new MainMenuState();
+    PlayState = new PlayState();
+    PauseState = new PauseState();
   }
 
   private void Start() {
