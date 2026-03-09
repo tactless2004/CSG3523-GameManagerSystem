@@ -1,0 +1,12 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/StyleSheets/GlobalStyles.uss?fileID=7433441132597879392&amp;guid=5ca1519ad99e406f87e38f7da34b0e58&amp;type=3#GlobalStyles"/>
+    <Style src="project://database/Assets/UI/StyleSheets/CampCraft.uss?fileID=7433441132597879392&amp;guid=871c843bbb3347d9a1da2675fade66cc&amp;type=3#CampCraft"/>
+    <ui:VisualElement name="" class="root-container campcraft-theme popup-menu" style="flex-grow: 1;">
+        <ui:Label text="Options" class="menu-heading"/>
+        <ui:Button text="X" parse-escape-sequences="true" name="closeButton" class="close-button"/>
+        <ui:VisualElement name="" class="popup-content" style="flex-grow: 1;">
+            <ui:Slider label="Volume" value="50" high-value="100" fill="true" show-input-field="true" name="masterVolSlider"/>
+            <ui:Toggle label="Mute All Sounds" name="muteToggle"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,121 @@
+/************************************************************
+ * COPYRIGHT:  2026
+ * PROJECT: System Sandbox
+ * FILE NAME: GlobalStyles.uss
+ * DESCRIPTION: 
+ * High-level layout and base component styling
+ *
+ * REVISION HISTORY:
+ * Date [YYYY/MM/DD] | Author | Comments
+ * ------------------------------------------------------------
+ * 2026/02/24 | Akram Taghavi-Burris | Created Stylesheet
+ *
+ ************************************************************/
+
+
+
+/*******************************************************************************
+ * GLOBAL DEFAULT STYLES
+ *******************************************************************************/
+
+:root {
+    /* Unity's invisible parent container */
+    /* Forces this invisible parent to stretch the full width/height of the Game View. */
+    flex-grow: 1;
+
+    /* Shared Variables  */
+    --color-default-yellow: #ffd166;
+    --color-pure-white: #ffffff;
+    --color-pure-black: #000000;
+}
+
+/*******************************************************************************
+ * 1. ROOT CONTAINER
+ * The primary wrapper for the entire UI screen
+ *******************************************************************************/
+
+.root-container {
+    /* Layout: Stretches to fill parent and centers all children */
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    /* Background */
+    background-color: var(--color-pure-white);
+
+    /* Base Typography */
+    -unity-font-definition: url("project:/Assets/UI/Fonts/Roboto/Roboto-Regular-SDF.asset");
+    font-size: 14px;
+    -unity-font-style: bold;
+}
+
+/*******************************************************************************
+ * 2. TYPOGRAPHY
+ * Specific text styles like Titles and Headers
+ *******************************************************************************/
+
+.game-title {
+    /* Layout */
+    margin-bottom: 4%;
+
+    /* Typography */
+    -unity-font-definition: url("project:/Assets/UI/Fonts/Bangers-Regular-SDF.asset");
+    font-size: 100px;
+    color: var(--color-default-yellow);
+
+    /* Text Effects (Stroke/Outline) */
+    -unity-text-outline-color: var(--color-pure-black);
+    -unity-text-outline-width: 2px;
+}
+
+/*******************************************************************************
+ * 3. BUTTONS & CONTAINERS
+ * Structural and visual styling for menu interaction
+ *******************************************************************************/
+
+/* Button container: vertical layout with responsive constraints */
+.button-container {
+    /* Layout */
+    flex-direction: column;
+    justify-content: space-evenly; /* Evenly space out the buttons */
+
+    /* Sizing */
+    width: 60%;
+    max-width: 360px;
+    min-width: 220px;
+    height: 40%;
+    min-height: 200px;
+}
+
+/* Base Button Styling */
+.button-container Button {
+    /* Sizing & Layout */
+    width: 100%;
+    min-height: 50px;
+
+    /* Typography */
+    font-size: 16px;
+    color: var(--color-pure-black);
+    -unity-text-align: middle-center;
+
+    /* Visuals */
+    background-color: var(--color-pure-white);
+    border-radius: 8px;
+    border-color: var(--color-pure-black);
+
+    /* "Chunky" Border logic for a stylized look */
+    border-top-width: 2px;
+    border-left-width: 2px;
+    border-right-width: 10px;
+    border-bottom-width: 10px;
+}
+
+/* Button States */
+.button-container Button:hover {
+    background-color: var(--color-default-yellow);
+
+    /* Simulated "Press/Hover" border shift */
+    border-right-width: 6px;
+    border-bottom-width: 6px;
+}

@@ -1,0 +1,251 @@
+/************************************************************
+ * COPYRIGHT:  2026
+ * PROJECT: System Sandbox
+ * FILE NAME: CampCraft.uss
+ * DESCRIPTION: 
+ * Camp Craft game stylesheet
+ *
+ * REVISION HISTORY:
+ * Date [YYYY/MM/DD] | Author | Comments
+ * ------------------------------------------------------------
+ * 2026/02/24 | Akram Taghavi-Burris | Created Stylesheet
+ *
+ ************************************************************/
+
+
+/*******************************************************************************
+ * CAMPCRAFT THEME STYLES
+ *******************************************************************************/
+
+:root {
+    /* --- Theme Palette --- */
+    --color-warm-white-alpha: rgba(250, 245, 230, 0.5);
+    --color-warm-white-solid: rgba(250, 245, 230, 1);
+    --color-warm-yellow: rgb(255, 209, 102);
+    --color-warm-beige: rgb(245, 230, 196);
+    --color-dark-beige: rgb(233, 216, 166);
+    --color-brown: rgb(92, 58, 33);
+
+    /* --- Background Variants --- */
+    --background-alpha: rgba(250, 245, 230, 0.5);
+    --background-panel: rgba(250, 245, 230, 0.75);
+
+    /* --- Fonts --- */
+    --font-lato: url("project://database/Assets/UI/Fonts/Lato/Lato-Regular-SDF.asset");
+    --font-courgette: url("project://database/Assets/UI/Fonts/Courgette-Regular-SDF.asset");
+}
+
+/*******************************************************************************
+ * 1. BASE THEME OVERRIDES
+ *******************************************************************************/
+
+/* Base text color and size for entire themed UI */
+.campcraft-theme {
+    color: var(--color-brown);
+    font-size: 18px;
+}
+
+/* Global Game Title */
+.campcraft-theme .game-title {
+    font-size: 50px;
+    -unity-font-definition: var(--font-courgette);
+    color: var(--color-warm-yellow);
+    -unity-text-outline-color: var(--color-brown);
+}
+
+/*******************************************************************************
+ * 2. BUTTONS 
+ *******************************************************************************/
+
+/* Standard Buttons */
+.campcraft-theme .button-container Button {
+    color: var(--color-brown);
+    background-color: var(--color-warm-beige);
+    border-color: var(--color-brown);
+}
+
+.campcraft-theme .button-container Button:hover {
+    background-color: var(--color-dark-beige);
+}
+
+/* Floating Close Button */
+.close-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: var(--color-dark-beige);
+    color: var(--color-brown);
+    font-size: 20px;
+    -unity-font-style: bold;
+    border-width: 2px;
+    border-color: var(--color-brown);
+    -unity-text-align: middle-center;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -16px;
+    right: -16px;
+}
+
+.close-button:hover {
+    background-color: var(--color-warm-yellow);
+}
+
+.close-button:active {
+    background-color: var(--color-warm-yellow);
+    scale: 0.95;
+}
+
+/*******************************************************************************
+ * 3. SLIDERS
+ *******************************************************************************/
+
+.campcraft-theme Slider {
+    height: 80px;
+    align-items: center;
+}
+
+/* Slider Labels */
+.campcraft-theme Slider Label {
+    -unity-font-definition: var(--font-lato);
+    font-size: 30px;
+    -unity-font-style: bold;
+    color: var(--color-brown);
+    width: 25%;
+    -unity-text-align: middle-center;
+}
+
+/* Layout: Input Container vs Text Field */
+.campcraft-theme Slider .unity-base-slider__input {
+    width: 75%;
+}
+
+.campcraft-theme Slider #unity-text-field {
+    width: 15%;
+    margin: auto 15px;
+}
+
+/* Text Box inside Slider */
+.campcraft-theme Slider .unity-base-text-field__input {
+    border-radius: 10px;
+    background-color: var(--color-warm-white-solid);
+    border-color: var(--color-brown);
+    border-width: 2px;
+    max-height: 50px;
+    margin: auto;
+}
+
+/* Draggable area and Tracker */
+.campcraft-theme Slider .unity-base-slider__drag-container {
+    max-width: 80%;
+    width: 80%;
+    flex-grow: 0;
+}
+
+.campcraft-theme Slider .unity-base-slider__tracker {
+    height: 10px;
+    background-color: var(--color-warm-white-solid);
+    border-radius: 5px;
+    border-width: 2px;
+    border-color: var(--color-brown);
+}
+
+/* Progress Fill & Knob */
+.campcraft-theme Slider .unity-base-slider__fill {
+    background-color: var(--color-warm-yellow);
+}
+
+.campcraft-theme Slider .unity-base-slider__dragger {
+    width: 26px;
+    height: 26px;
+    border-radius: 13px;
+    background-color: var(--color-dark-beige);
+    border-width: 2px;
+    border-color: var(--color-brown);
+    transition-property: scale;
+    transition-duration: 0.08s;
+}
+
+.campcraft-theme Slider .unity-base-slider__dragger:hover {
+    background-color: var(--color-warm-yellow);
+    scale: 1.1;
+}
+
+.campcraft-theme Slider .unity-base-slider__dragger:active {
+    scale: 0.9;
+}
+
+/*******************************************************************************
+ * 4. TOGGLES
+ *******************************************************************************/
+
+.campcraft-theme Toggle Label {
+    -unity-font-definition: var(--font-lato);
+    font-size: 20px;
+    -unity-font-style: bold;
+    color: var(--color-brown);
+    width: 25%;
+    -unity-text-align: middle-center;
+}
+
+.campcraft-theme Toggle .unity-toggle__checkmark {
+    border-radius: 10px;
+    background-color: var(--color-warm-white-solid);
+    border-color: var(--color-brown);
+    border-width: 2px;
+    max-height: 50px;
+}
+
+/*******************************************************************************
+ * 5. MENUS & PANELS
+ *******************************************************************************/
+
+/* Main Menu Side Panel */
+.main-menu.campcraft-theme {
+    width: 30%;
+    height: 100%;
+    margin-left: 10%;
+    -unity-font-definition: var(--font-lato);
+    background-color: var(--background-alpha);
+}
+
+/* Popup Container */
+.popup-menu.campcraft-theme {
+    width: 60%;
+    max-width: 700px;
+    min-width: 320px;
+    max-height: 70%;
+    padding-top: 80px; /* Space for floating header */
+    margin: auto;
+    -unity-font-definition: var(--font-lato);
+    background-color: var(--background-panel);
+    border-radius: 8px;
+    border-width: 5px;
+    border-color: var(--color-brown);
+    position: relative;
+    flex-direction: column;
+}
+
+/* Internal Popup Content Area */
+.popup-content {
+    width: 100%;
+    max-height: 100%;
+    flex-grow: 1;
+    flex-direction: column;
+    padding: 20px;
+}
+
+/* Floating Menu Header */
+.campcraft-theme .menu-heading {
+    font-size: 50px;
+    -unity-font-definition: var(--font-lato);
+    background-color: var(--color-warm-beige);
+    border-radius: 8px;
+    border-width: 5px;
+    border-color: var(--color-brown);
+    padding: 6px 20px;
+    position: absolute;
+    top: -28px;
+    left: 50%;
+    translate: -50% 0; /* Horizontal Center */
+}

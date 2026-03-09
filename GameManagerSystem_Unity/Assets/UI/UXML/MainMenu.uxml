@@ -1,0 +1,12 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/StyleSheets/GlobalStyles.uss?fileID=7433441132597879392&amp;guid=5ca1519ad99e406f87e38f7da34b0e58&amp;type=3#GlobalStyles"/>
+    <Style src="project://database/Assets/UI/StyleSheets/CampCraft.uss?fileID=7433441132597879392&amp;guid=871c843bbb3347d9a1da2675fade66cc&amp;type=3#CampCraft"/>
+    <ui:VisualElement class="root-container campcraft-theme main-menu">
+        <ui:Label text="Game Title" class="game-title"/>
+        <ui:VisualElement class="button-container">
+            <ui:Button name="playButton" text="Play"/>
+            <ui:Button name="optionsButton" text="Options"/>
+            <ui:Button name="quitButton" text="Quit"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
