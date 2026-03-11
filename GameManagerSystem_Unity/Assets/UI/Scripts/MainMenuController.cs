@@ -50,7 +50,7 @@ public class MainMenuController : BaseUIView
             case UICommandType.QuitGame:
                 UIEvents.OnQuitRequested?.Invoke();
                 break;
-            case UICommandType.ToggleSettings:
+            case UICommandType.ToggleMenu:
                 UIEvents.OnOptionsToggle?.Invoke(OptionsMenuInstance);
                 break;
             

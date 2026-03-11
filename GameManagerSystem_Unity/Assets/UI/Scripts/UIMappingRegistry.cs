@@ -25,9 +25,9 @@ public static class UIMappingRegistry
     {
         { "playButton",  UICommandType.StartGame },
         { "quitButton",  UICommandType.QuitGame },
-        { "closeButton", UICommandType.CloseMenu },
-        { "masterVolumeSlider", UICommandType.MasterVolume },
-        { "muteAllToggle", UICommandType.MuteAll },
+        { "closeButton", UICommandType.ToggleMenu },
+        { "masterVolSlider", UICommandType.MasterVolume },
+        { "muteToggle", UICommandType.MuteAll },
     };
 
     
