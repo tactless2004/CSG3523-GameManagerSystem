@@ -8,7 +8,6 @@
  * Date [YYYY/MM/DD] | Author | Comments
  * ------------------------------------------------------------
  * 2026/02/24 | Akram Taghavi-Burris | Created class
- * 2026/03/10 | Leyton McKinney | Remove CloseMenu(), it is handled in MainMenuController.
  *
  ************************************************************/
  
@@ -28,6 +27,9 @@ public static class UICommandHandler
         
         UIEvents.OnStartGameRequested += StartGame;
         UIEvents.OnQuitRequested += QuitGame;
+
+        UIEvents.OnOptionsToggle -= OnToggleOptionsMenu;
+        UIEvents.OnOptionsToggle += OnToggleOptionsMenu;
     }
     
     public static void StartGame()
@@ -50,5 +52,10 @@ public static class UICommandHandler
             Application.Quit();
 #endif
     }//end QuitGame()
+
+    public static void OnToggleOptionsMenu(GameObject menu)
+    {
+        menu.SetActive(!menu.activeInHierarchy);
+    }
     
 }//end UICommands

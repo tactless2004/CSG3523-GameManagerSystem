@@ -19,9 +19,6 @@ using UnityEngine;
 /// </summary>
 public class MainMenuController : BaseUIView
 {
-    /// <summary>
-    /// TEMPORARY: Reference to the Options menu GameObject to toggle visibility.
-    /// </summary>
     public GameObject OptionsMenu;
     private GameObject OptionsMenuInstance;
     
@@ -30,6 +27,7 @@ public class MainMenuController : BaseUIView
     {
         // TEMPORARY: Initializes the UICommandHandler to set up event subscriptions.
         UICommandHandler.Initialize();
+        OptionsMenuInstance = Instantiate(OptionsMenu);
         
     }//end Start()
     
@@ -51,6 +49,9 @@ public class MainMenuController : BaseUIView
             
             case UICommandType.QuitGame:
                 UIEvents.OnQuitRequested?.Invoke();
+                break;
+            case UICommandType.ToggleSettings:
+                UIEvents.OnOptionsToggle?.Invoke(OptionsMenuInstance);
                 break;
             
         }//end Switch

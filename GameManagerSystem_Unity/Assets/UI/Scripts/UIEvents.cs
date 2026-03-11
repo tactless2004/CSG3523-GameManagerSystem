@@ -15,12 +15,14 @@
  ************************************************************/
 
 using System;
+using UnityEngine;
 
 public static class UIEvents
 {
     // High-level signals (The "Intercom" channels)
     public static Action OnStartGameRequested;
     public static Action OnQuitRequested;
+    public static Action<GameObject> OnOptionsToggle;
     public static Action<float> OnMasterVolumeChanged;
     public static Action<bool> OnMuteAllChanged;
     
