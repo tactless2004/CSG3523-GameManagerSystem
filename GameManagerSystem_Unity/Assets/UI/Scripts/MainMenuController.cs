@@ -9,8 +9,7 @@
  * Date [YYYY/MM/DD] | Author | Comments
  * ------------------------------------------------------------
  * 2026/02/20 | Akram Taghavi-Burris | Created class
- *
- *
+ * 2026/03/11 | Leyton McKinney | Add stubbed out Toggle and Slider "implementations".
  ************************************************************/
  
 using UnityEngine;
@@ -24,7 +23,7 @@ public class MainMenuController : BaseUIView
     /// TEMPORARY: Reference to the Options menu GameObject to toggle visibility.
     /// </summary>
     public GameObject OptionsMenu;
-    
+    private GameObject OptionsMenuInstance;
     
     // Start is called once before the first Update
     void Start()
@@ -65,7 +64,7 @@ public class MainMenuController : BaseUIView
         {
             case "optionsButton":
                 Debug.Log("Open Options Panel");
-                OpenMenu(OptionsMenu);
+                OpenMenu();
                 break;
             case "creditsButton":
                 Debug.Log("Open Credits Panel");
@@ -73,18 +72,34 @@ public class MainMenuController : BaseUIView
         }
     }//end OnMenuSpecificButtonClicked
 
-    
-
     /// <summary>
     /// Opens the specified menu by setting it active.
     /// </summary>
     /// <param name="menu">The GameObject representing the menu panel.</param>
-    private void OpenMenu(GameObject menu)
+    private void OpenMenu()
     {
-        menu.SetActive(true);
+        if (OptionsMenuInstance == null)
+        {
+            OptionsMenuInstance = Instantiate(OptionsMenu);
+            OptionsMenuInstance.SetActive(true);
+        }
+        else
+        {
+            OptionsMenuInstance.SetActive(!OptionsMenuInstance.activeInHierarchy);
+        }
         
     }//end OpenMenu()
-    
-    
-    
+
+    protected override void OnGlobalSliderChanged(UICommandType action, float value)
+    {
+        // MainMenu has no sliders, as such this is left intentionally empty.
+        // Settings sliders are handled by OptionsMenuController.
+    }
+
+    protected override void OnGlobalToggleChanged(UICommandType action, bool value)
+    {
+        // MainMenu has no toggles, as such this is left intentionally empty.
+        // Settings toggles are handled by OptionsMenuController.
+    }
+
 }//end MainMenuController

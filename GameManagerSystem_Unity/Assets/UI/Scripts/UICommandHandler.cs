@@ -8,7 +8,7 @@
  * Date [YYYY/MM/DD] | Author | Comments
  * ------------------------------------------------------------
  * 2026/02/24 | Akram Taghavi-Burris | Created class
- *
+ * 2026/03/10 | Leyton McKinney | Remove CloseMenu(), it is handled in MainMenuController.
  *
  ************************************************************/
  
@@ -36,7 +36,7 @@ public static class UICommandHandler
         // Tell the Brain to change state
         //GameManager.Instance.ChangeState(GameState.Playing); 
         // Logic for loading the actual scene
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MainLevel");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Playing");
         
     }//end StartGame()
 
@@ -50,13 +50,5 @@ public static class UICommandHandler
             Application.Quit();
 #endif
     }//end QuitGame()
-
-    
-    public static void CloseMenu(GameObject menuObject)
-    {
-        // Maybe you use a specific event system or just deactivate
-        menuObject.SetActive(false);
-        
-    }//end CloseMenu()
     
 }//end UICommands

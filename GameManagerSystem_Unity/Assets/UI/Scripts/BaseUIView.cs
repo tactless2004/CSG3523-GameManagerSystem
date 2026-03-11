@@ -10,6 +10,7 @@
 * Date [YYYY/MM/DD] | Author | Comments
 * ------------------------------------------------------------
 * 2026/02/27 | Akram Taghavi-Burris | Created class
+* 2026/03/11 | Leyton McKinney | Add support for toggles and sliders.
 *
 *
 ************************************************************/
@@ -32,6 +33,12 @@ public abstract class BaseUIView : MonoBehaviour
     // INTERACTABLE MAPS
     //  Buttons -> Command Tokens
     protected Dictionary<Button, UICommandType?> _buttonMap = new();
+
+    // Sliders -> Command Tokens
+    protected Dictionary<Slider, UICommandType?> _sliderMap = new();
+
+    // Toggles -> Command Tokens
+    protected Dictionary<Toggle, UICommandType?> _toggleMap = new();
 
 
     // Awake is called once on initialization (before Start)
@@ -75,17 +82,39 @@ public abstract class BaseUIView : MonoBehaviour
     {
         // Create a list of all ui interactable in the UXML hierarchy
         List<Button> buttons = _root.Query<Button>().ToList();
+        List<Slider> sliders = _root.Query<Slider>().ToList();
+        List<Toggle> toggles = _root.Query<Toggle>().ToList();
 
         
         // Debug warning if the UI contains no interactable elements.
-       if (buttons.Count == 0 )
+       if (buttons.Count == 0 &&
+           sliders.Count == 0 &&
+           toggles.Count == 0)
        {
            Debug.LogWarning($"[BaseUIView] No interactable elements found in {_uiDocument.name}. " +
                             "Ignore this if this is a static overlay (e.g., HUD or Loading Screen).");
            return;
            
        }//end if interactable check
+
+       foreach (var button in buttons)
+       {
+            UICommandType? token = UIMappingRegistry.TryGetCommand(button.name, out var cmd) ? cmd : null;
+            _buttonMap[button] = token;
+       }
        
+       foreach (var slider in sliders)
+       {
+            UICommandType? token = UIMappingRegistry.TryGetCommand(slider.name, out var cmd) ? cmd : null;
+            _sliderMap[slider] = token;
+       }
+
+       foreach (var toggle in toggles)
+        {
+            UICommandType? token = UIMappingRegistry.TryGetCommand(toggle.name, out var cmd) ? cmd : null;
+            _toggleMap[toggle] = token;
+        }
+
     }//end BuildIntractableMap()
     
     
@@ -105,11 +134,22 @@ public abstract class BaseUIView : MonoBehaviour
             button.RegisterCallback<NavigationSubmitEvent>(HandleButtonTriggered);
             
         }//end foreach Button
+
+        // Register slider interactions (on value changed)
+        foreach (var slider in _sliderMap.Keys)
+        {
+            slider.RegisterCallback<ChangeEvent<float>>(HandleSliderChanged);
+        }
+
+        foreach (var toggle in _toggleMap.Keys)
+        {
+            toggle.RegisterCallback<ChangeEvent<bool>>(HandleToggleChanged);
+        }
         
         
     }//end RegisterInteractableCallbacks()
-    
-    
+
+
     private void UnregisterInteractableCallbacks()
     {
         // Unregister all Button objects in the dictionary
@@ -117,8 +157,18 @@ public abstract class BaseUIView : MonoBehaviour
         {
             button.UnregisterCallback<ClickEvent>(HandleButtonTriggered);
             button.UnregisterCallback<NavigationSubmitEvent>(HandleButtonTriggered);
-            
+
         }//end foreach button
+
+        foreach (var slider in _sliderMap.Keys)
+        {
+            slider.UnregisterCallback<ChangeEvent<float>>(HandleSliderChanged);
+        }
+
+        foreach (var toggle in _toggleMap.Keys)
+        {
+            toggle.UnregisterCallback<ChangeEvent<bool>>(HandleToggleChanged);
+        }
         
 
     }//end UnregisterButtonCallbacks()
@@ -150,6 +200,33 @@ public abstract class BaseUIView : MonoBehaviour
         
     }//end HandleButtonTriggered()
     
+    private void HandleSliderChanged(ChangeEvent<float> evt)
+    {
+        // Check if the event's target is a Slider
+        // and if the Slider exists in the dictionary
+        if (evt.target is Slider slider && _sliderMap.TryGetValue(slider, out var action))
+        {
+            Debug.Log($"[BaseUIView] Slider {slider.name} changed to {evt.newValue}.");
+
+            if (action.HasValue)
+            {
+                OnGlobalSliderChanged(action.Value, evt.newValue);
+            }
+        }
+    }
+
+    private void HandleToggleChanged(ChangeEvent<bool> evt)
+    {
+        if (evt.target is Toggle toggle && _toggleMap.TryGetValue(toggle, out var action))
+        {
+            Debug.Log($"[BaseUIView] Toggle {toggle.name} changed to {evt.newValue}");
+
+            if (action.HasValue)
+            {
+                OnGlobalToggleChanged(action.Value, evt.newValue);
+            }
+        }
+    }
     
 
 
@@ -174,6 +251,19 @@ public abstract class BaseUIView : MonoBehaviour
     /// </param>
     protected abstract void OnMenuSpecificButtonClicked(string buttonName);
 
+    /// <summary>
+    /// Called when a slider representing a global setting is changed.
+    /// </summary>
+    /// <param name="action"></param>
+    /// <param name="value"></param>
+    protected abstract void OnGlobalSliderChanged(UICommandType action, float value);
 
-    
+    /// <summary>
+    /// Called when a toggle representing a global setting is changed.
+    /// </summary>
+    /// <param name="action"></param>
+    /// <param name="value"></param>
+    protected abstract void OnGlobalToggleChanged(UICommandType action, bool value);
+
+
 }//end BaseUIView

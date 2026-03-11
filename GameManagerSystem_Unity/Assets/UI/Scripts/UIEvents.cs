@@ -10,12 +10,11 @@
  * Date [YYYY/MM/DD] | Author | Comments
  * ------------------------------------------------------------
  * 2026/02/24 | Akram Taghavi-Burris | Created class
- *
+ * 2026/03/11 | Leyton McKinney | Add events for MasterVolume and MuteAll
  *
  ************************************************************/
 
 using System;
-using UnityEngine;
 
 public static class UIEvents
 {
