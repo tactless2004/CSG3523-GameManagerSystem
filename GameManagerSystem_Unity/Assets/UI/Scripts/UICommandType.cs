@@ -25,7 +25,9 @@ public enum UICommandType
     StartGame,
     QuitGame,
     CloseMenu,
-    OpenSettings
+    OpenSettings,
+    MasterVolume,
+    MuteAll,
 }
 
 

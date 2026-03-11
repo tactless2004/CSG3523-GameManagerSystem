@@ -22,6 +22,7 @@ public static class UIEvents
     // High-level signals (The "Intercom" channels)
     public static Action OnStartGameRequested;
     public static Action OnQuitRequested;
-
+    public static Action<float> OnMasterVolumeChanged;
+    public static Action<bool> OnMuteAllChanged;
     
 }//end UIEvents
