@@ -27,6 +27,10 @@ public class AudioManager : Singleton<AudioManager>
 
     [SerializeField] private bool _defaultMuteAll = false;
 
+    [Header("Runtime Audio Settings")]
+    [SerializeField] private bool _muted;
+    [SerializeField] private float _masterVolume;
+
     protected override void Awake()
     {
         base.Awake();
@@ -49,19 +53,24 @@ public class AudioManager : Singleton<AudioManager>
 
     private void ApplyDefaultSettings()
     {
-        SetMasterVolume(_defaultMasterVolume);
+        SetMasterVolume(50); // work around
         SetMuteAll(_defaultMuteAll);
     }
 
     private void SetMasterVolume(float value)
     {
-        AudioListener.volume = value;
+        // cache value even if muted.
+        _masterVolume = value/100; // divide by 100 because because dom(slider) = [0, 100], dom(volume) = [0, 1]
+        if (_muted) return;
+
+        AudioListener.volume = _masterVolume;
         Debug.Log($"[AudioManager] Master volume set to {value}.");
     }
 
     private void SetMuteAll(bool isMuted)
     {
-        AudioListener.pause = isMuted;
+        AudioListener.volume = isMuted ? 0 : _masterVolume;
+        _muted = isMuted;
         Debug.Log($"[AudioManager] Mute all set to {isMuted}.");
     }
 }

@@ -13,7 +13,7 @@
 * 2026/03/11 | Leyton McKinney | Init
 *
 ************************************************************/
- 
+
 using UnityEngine;
 
 public class OptionsMenuController : BaseUIView
@@ -26,17 +26,18 @@ public class OptionsMenuController : BaseUIView
 
     protected override void OnGlobalButtonClicked(UICommandType action)
     {
+        Debug.Log($"[OptionsMenuController] OnGlobalButtonClicked fired with action: {action}");
         switch (action)
         {
             case UICommandType.ToggleMenu:
-                UIEvents.OnOptionsToggle(gameObject);
+                UICommandHandler.OnToggleOptionsMenu(gameObject);
                 break;
         }
     }
 
     protected override void OnMenuSpecificButtonClicked(string buttonName)
     {
-        Debug.LogWarning($"[OptionsMenuController] Unhandled menu-specific button: {buttonName}");
+        // No "Menu Specific Buttons" for Options View
     }
 
     protected override void OnGlobalSliderChanged(UICommandType action, float value)

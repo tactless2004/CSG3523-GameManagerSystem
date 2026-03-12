@@ -62,3 +62,5 @@ MonoBehaviour:
   _isPersistent: 1
   _defaultMasterVolume: 1
   _defaultMuteAll: 0
+  _muted: 0
+  _masterVolume: 100

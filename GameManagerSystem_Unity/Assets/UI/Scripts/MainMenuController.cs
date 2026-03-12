@@ -65,31 +65,13 @@ public class MainMenuController : BaseUIView
         {
             case "optionsButton":
                 Debug.Log("Open Options Panel");
-                OpenMenu();
+                UIEvents.OnOptionsToggle(OptionsMenuInstance);
                 break;
             case "creditsButton":
                 Debug.Log("Open Credits Panel");
                 break;
         }
     }//end OnMenuSpecificButtonClicked
-
-    /// <summary>
-    /// Opens the specified menu by setting it active.
-    /// </summary>
-    /// <param name="menu">The GameObject representing the menu panel.</param>
-    private void OpenMenu()
-    {
-        if (OptionsMenuInstance == null)
-        {
-            OptionsMenuInstance = Instantiate(OptionsMenu);
-            OptionsMenuInstance.SetActive(true);
-        }
-        else
-        {
-            OptionsMenuInstance.SetActive(!OptionsMenuInstance.activeInHierarchy);
-        }
-        
-    }//end OpenMenu()
 
     protected override void OnGlobalSliderChanged(UICommandType action, float value)
     {

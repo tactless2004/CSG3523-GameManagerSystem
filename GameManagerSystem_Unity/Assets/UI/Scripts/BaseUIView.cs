@@ -80,6 +80,17 @@ public abstract class BaseUIView : MonoBehaviour
     // Queries UI Interactable and maps references 
     private void BuildInteractableMap()
     {
+        _root = _uiDocument.rootVisualElement;
+
+        if (_root == null)
+        {
+            Debug.LogError("[BaseUIView] Root is null in BuildInteractableMap - cannot build map.");
+        }
+        // Clear lists for the OnEnable -> OnDisable -> OnEnable case
+        _buttonMap.Clear();
+        _sliderMap.Clear();
+        _toggleMap.Clear();
+
         // Create a list of all ui interactable in the UXML hierarchy
         List<Button> buttons = _root.Query<Button>().ToList();
         List<Slider> sliders = _root.Query<Slider>().ToList();

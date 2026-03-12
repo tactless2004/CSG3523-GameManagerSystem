@@ -39,6 +39,9 @@ public static class UICommandHandler
         //GameManager.Instance.ChangeState(GameState.Playing); 
         // Logic for loading the actual scene
         UnityEngine.SceneManagement.SceneManager.LoadScene("Playing");
+        GameManager.Instance.ReplaceStates(
+            GameManager.Instance.PlayState
+        );
         
     }//end StartGame()
 
